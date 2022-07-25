@@ -17,7 +17,7 @@ class CreateConseilsTable extends Migration
             $table->increments('id');
             $table->integer('paiement_id')->unsigned();
             $table->foreign('paiement_id')->references('id')->on('paiements')->onDelete('cascade');
-            $table->string('conseil')->nullable();
+            $table->text('conseil')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreatePaiementsTable extends Migration
             $table->increments('id');
             $table->integer('consultation_id')->unsigned();
             $table->foreign('consultation_id')->references('id')->on('consultations')->onDelete('cascade');
-            $table->string('prix');
+            $table->integer('prix');
             $table->string('status');
             $table->timestamps();
         });
