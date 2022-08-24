@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Pivot;
+use Illuminate\Database\Eloquent\Relations\Pivot as RelationsPivot;
 
-class Consultation extends Pivot
+class Consultation extends RelationsPivot
 {
     use HasFactory;
 
@@ -27,5 +27,19 @@ class Consultation extends Pivot
     {
         return $this->hasOne(Paiement::class);
     }
+    /**
+     * Get the medecin that owns the consultation.
+     */
+    public function medecin()
+    {
+        return $this->belongsTo(Medecin::class);
+    }
+    /**
+     * Get the patient that owns the consultation.
+     */
+    public function patient()
+    {
+        return $this->belongsTo(Patient::class);
+    }  
 
 }

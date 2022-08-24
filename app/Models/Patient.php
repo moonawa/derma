@@ -22,14 +22,17 @@ class Patient extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // public function medecins()
+    // {
+    //     //return $this->belongsToMany(Medecin::class);
+    //     return $this->belongsToMany(Medecin::class)
+    //             ->as('consultations')
+    //             ->withTimestamps();
+    // }
     /**
-     * The medecins that belong to the patient.
+     * Get the consultations for the blog medecin.
      */
-    public function medecins()
-    {
-        //return $this->belongsToMany(Medecin::class);
-        return $this->belongsToMany(Medecin::class)
-                ->as('consultations')
-                ->withTimestamps();
+    public function consultation() {
+        return $this->hasMany(Consultation::class);
     }
 }

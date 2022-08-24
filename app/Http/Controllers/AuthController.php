@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medecin;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -12,7 +16,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password'  => 'required|min:3|confirmed',
             'telephone' => 'required',
-            'status' => 'required',
+            //'status' => 'required',
             'name' => 'required',
             //'role' => 'required',
             'adresse' => 'required',
@@ -27,23 +31,24 @@ class AuthController extends Controller
             ], 422);
         }
         //$pass= $this->genreratePassword(8);
-        $user = new User;
+        $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->role = "MEDECIN";
+        $user->role = 1;//1 correspond a medecin , 2 a patient
+        $user->superadmin = 1;
         $user->telephone = $request->telephone;
         $user->adresse = $request->adresse;
         $user->sexe = $request->sexe;
         $user->avatar = $request->avatar;
-        $user->status = $request->status;
+        $user->status = 1;
         $user->save();  
         $medecin = new Medecin();
         $medecin->user_id = $user->id;
         $medecin->matricule = $request->matricule;
         $medecin->hopital = $request->hopital;
         $medecin->clinique = $request->clinique;
-        $medecin->date_de_commencement = $request->date_de_commencement;
+        $medecin->annee_de_commencement = $request->annee_de_commencement;
         $medecin->save();
         return response()->json(['status' => 'success'], 200);
     }

@@ -1,0 +1,6 @@
+git push -u origin main
+php artisan make:middleware CheckIsMedecin
+php artisan make:middleware CheckIsPatient
+php artisan make:controller PaiementrController --resource
+php artisan make:middleware CheckIsMedecinOrSelf
+php artisan make:model Produit -mc

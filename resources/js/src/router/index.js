@@ -13,6 +13,15 @@ const routes = [
     name: 'dashboard',
     component: () => import('@/views/dashboard/Dashboard.vue'),
   },
+  // SuperadmiADMIN ROUTES
+  {
+    path: '/admin',
+    name: 'admin.dashboard',
+    component: AdminDashboard,
+    meta: {
+      auth: {roles: 1, redirect: {name: 'login'}, forbiddenRedirect: '/403'}
+    }
+  },
   {
     path: '/typography',
     name: 'typography',
@@ -49,6 +58,7 @@ const routes = [
     component: () => import('@/views/pages/Login.vue'),
     meta: {
       layout: 'blank',
+      auth: false
     },
   },
   {
@@ -57,6 +67,7 @@ const routes = [
     component: () => import('@/views/pages/Register.vue'),
     meta: {
       layout: 'blank',
+      auth: false
     },
   },
   {

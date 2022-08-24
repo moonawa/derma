@@ -20,7 +20,7 @@ class CreateMedecinsTable extends Migration
             $table->string('matricule')->nullable();
             $table->string('hopital');
             $table->string('clinique')->nullable();
-            $table->date('date_de_commencement');
+            $table->integer('annee_de_commencement');//il doit juste mettre l'année
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class Medecin extends Model
         'matricule',
         'hopital',
         'clinique',
-        'date_de_commencement'
+        'annee_de_commencement'
     ];
 
     /**
@@ -24,15 +24,18 @@ class Medecin extends Model
     {
         return $this->belongsTo(User::class);
     }
-
+    // public function patients()
+    // {
+    //     //return $this->belongsToMany(Patient::class);
+    //     return $this->belongsToMany(Patient::class)
+    //             ->as('consultations')
+    //             ->withTimestamps();
+    // }
     /**
-     * The patients that belong to the medecin.
+     * Get the consultations for the blog medecin.
      */
-    public function patients()
-    {
-        //return $this->belongsToMany(Patient::class);
-        return $this->belongsToMany(Patient::class)
-                ->as('consultations')
-                ->withTimestamps();
+    public function consultation() {
+        return $this->hasMany(Consultation::class);
     }
+
 }

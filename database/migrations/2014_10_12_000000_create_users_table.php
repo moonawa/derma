@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('telephone')->unique();
             $table->integer('role');
+            $table->boolean('superadmin')->nullable();
             $table->string('avatar')->default('default.jpg')->nullable();
             $table->string('status')->nullable();
             $table->string('adresse')->nullable();
